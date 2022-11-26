@@ -81,7 +81,6 @@ try {
     guessInput.value = "";
 
     if (game.isOver) {
-      alert("here");
       guessInput.disabled = true;
       guessButton.disabled = true;
       resetGame.classList.remove("hidden");
