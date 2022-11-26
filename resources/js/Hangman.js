@@ -163,7 +163,21 @@ class Hangman {
    * i.e.: if the word is BOOK, and the letter O has been guessed, this would return _ O O _
    */
   getWordHolderText() {
-    return;
+    let wordContainer = [];
+
+    for (let i = 0; i < this.word.length; i++) {
+      wordContainer.push("-");
+    }
+
+    for (let i = 0; i < this.word.length; i++) {
+      for (let j = 0; j < this.guesses.length; j++) {
+        if (this.word.charAt(i) === this.guesses[j]) {
+          wordContainer[i] = this.word.charAt(i);
+        }
+      }
+    }
+
+    return wordContainer.join(" ");
   }
 
   /**
@@ -173,7 +187,7 @@ class Hangman {
    * Hint: use the Array.prototype.join method.
    */
   getGuessesText() {
-    return ``;
+    return "Guesses: " + this.guesses.join(", ");
   }
 
   /**
