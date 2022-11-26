@@ -68,7 +68,33 @@ try {
   //      2. disable the guessButton
   //      3. show the resetGame button
   // if the game is won or lost, show an alert.
-  guessForm.addEventListener(`submit`, function (e) { });
+  guessForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let input = guessInput.value;
+
+    game.guess(input);
+
+    wordHolderText.innerHTML = game.getWordHolderText();
+
+    guessesText.innerHTML = game.getGuessesText();
+
+    guessInput.value = "";
+
+    if (game.isOver) {
+      alert("here");
+      guessInput.disabled = true;
+      guessButton.disabled = true;
+      resetGame.classList.remove("hidden");
+      resetGame.classList.add("btn");
+
+      if (game.didWin) {
+        alert("You won");
+      }
+      else {
+        alert("You Lost - Word was: " + game.word);
+      }
+    }
+  });
 
   // add a click Event Listener to the resetGame button
   //    show the startWrapper
