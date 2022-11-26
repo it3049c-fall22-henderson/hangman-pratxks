@@ -1,11 +1,17 @@
 class Hangman {
   constructor(_canvas) {
     if (!_canvas) {
-      throw new Error(`invalid canvas provided`);
+      throw new Error("invalid canvas provided");
     }
 
     this.canvas = _canvas;
-    this.ctx = this.canvas.getContext(`2d`);
+    this.ctx = this.canvas.getContext("2d");
+
+    this.word = "";
+    this.isOver = false;
+    this.didWin = false;
+    this.guesses = [];
+    this.wrongGuesses = 0;
   }
 
   /**
@@ -65,7 +71,7 @@ class Hangman {
    * drawHead, drawBody, drawRightArm, drawLeftArm, drawRightLeg, or drawLeftLeg.
    * if the number wrong guesses is 6, then also set isOver to true and didWin to false.
    */
-  onWrongGuess() {}
+  onWrongGuess() { }
 
   /**
    * This function will return a string of the word placeholder
@@ -103,15 +109,15 @@ class Hangman {
     this.ctx.fillRect(10, 410, 175, 10); // Base
   }
 
-  drawHead() {}
+  drawHead() { }
 
-  drawBody() {}
+  drawBody() { }
 
-  drawLeftArm() {}
+  drawLeftArm() { }
 
-  drawRightArm() {}
+  drawRightArm() { }
 
-  drawLeftLeg() {}
+  drawLeftLeg() { }
 
-  drawRightLeg() {}
+  drawRightLeg() { }
 }
