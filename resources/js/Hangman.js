@@ -36,14 +36,26 @@ class Hangman {
    * @param {string} difficulty a difficulty string to be passed to the getRandomWord Function
    * @param {function} next callback function to be called after a word is reveived from the API.
    */
-  start(difficulty, next) {
+  async start(difficulty, next) {
     // get word and set it to the class's this.word
     // clear canvas
     // draw base
     // reset this.guesses to empty array
     // reset this.isOver to false
     // reset this.didWin to false
+    //alert("before");
+    this.word = await this.getRandomWord(difficulty);
+    //alert("difficulty");
+
+    this.clearCanvas();
+    this.drawBase();
+    this.guesses = [];
+    this.isOver = false;
+    this.didWin = false;
+
+    next.call();
   }
+
 
   /**
    *
@@ -59,6 +71,37 @@ class Hangman {
     // check if the word includes the guessed letter:
     //    if it's is call checkWin()
     //    if it's not call onWrongGuess()
+
+    if (letter.length == 0) {
+      alert("Error: Nothing is Provided");
+      throw new Error("Error: Nothing is Provided");
+    }
+    else if (!/^[a-zA-Z]+$/.test(letter)) {
+      alert("Error: Only Alphabetic Characters Required");
+      throw new Error("Error: Only Alphabetic Characters Required");
+    }
+    else if (letter.length >= 2) {
+      alert("Error: Only One Character Required");
+      throw new Error("Error: Only One Character Required");
+    }
+    else {
+      letter = letter.toLowerCase();
+
+      if (this.guesses.includes(letter)) {
+        alert("Character Already Guessed");
+        throw new Error("Character Already Guessed");
+      }
+      else {
+        this.guesses.push(letter);
+
+        if (this.word.includes(letter)) {
+          this.checkWin();
+        }
+        else {
+          this.onWrongGuess();
+        }
+      }
+    }
   }
 
   checkWin() {
