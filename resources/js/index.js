@@ -22,6 +22,20 @@ let canvas = document.getElementById(`hangmanCanvas`);
 // The following Try-Catch Block will catch the errors thrown
 try {
   // Instantiate a game Object using the Hangman class.
+  let game;
+
+  function initializeGame() {
+    // hide the startWrapper
+    startWrapper.classList.add("hidden");
+
+    // show the gameWrapper
+    gameWrapper.classList.remove("hidden");
+
+    guessInput.disabled = false;
+    guessButton.disabled = false;
+    wordHolderText.innerHTML = game.getWordHolderText();
+    guessesText.innerHTML = game.getGuessesText();
+  }
 
   // add a submit Event Listener for the to the difficultySelectionForm
   //    get the difficulty input
@@ -30,7 +44,16 @@ try {
   //       2. show the gameWrapper
   //       3. call the game getWordHolderText and set it to the wordHolderText
   //       4. call the game getGuessessText and set it to the guessesText
-  difficultySelectForm.addEventListener(`submit`, function (event) { });
+  difficultySelectForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    game = new Hangman(canvas);
+
+    // get the difficulty input level
+    let difficulty = difficultySelect.options[difficultySelect.selectedIndex].value;
+
+    game.start(difficulty, initializeGame);
+  });
 
   // add a submit Event Listener to the guessForm
   //    get the guess input
