@@ -99,7 +99,19 @@ try {
   // add a click Event Listener to the resetGame button
   //    show the startWrapper
   //    hide the gameWrapper
-  resetGame.addEventListener(`click`, function (e) { });
+  resetGame.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // show the startWrapper
+    startWrapper.classList.remove("hidden");
+
+    // hide the gameWrapper
+    gameWrapper.classList.add("hidden");
+    // hide reset button
+
+    resetGame.classList.remove("btn");
+    resetGame.classList.add("hidden");
+  });
 } catch (error) {
   console.error(error);
   alert(error);
