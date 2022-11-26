@@ -7,6 +7,26 @@
         .hidden {
             display: none;
         }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            margin: 8px 4px;
+            cursor: pointer;
+        }
+
+        input[type=button] {
+            background-color: #aa5a04;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            margin: 6px 3px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -14,7 +34,7 @@
     <h1>Hangman</h1>
     <div id="startWrapper">
         <form id="difficultySelect">
-            <select id="difficulty">
+            <select id="difficulty" style="width: 100px">
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
@@ -26,10 +46,9 @@
         <form id="guessForm">
             <input type="text" id="guessInput" placeholder="Guess a letter!" />
             <input type="submit" id="guessSubmitButton" value="Guess" />
+            <input type="button" id="resetGame" class="hidden" value="Play Again!" />
         </form>
-        <button type="button" id="resetGame" class="hidden">
-            Play Again!
-        </button>
+
         <div id="guesses"></div>
         <br />
         <div id="wordHolder"></div>
